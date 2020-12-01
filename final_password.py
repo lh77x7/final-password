@@ -1,30 +1,17 @@
 import random
 
-atempts = 7
-
-# heroes = ['Rocky Balboa', 'James Bond', 'Han Solo',
-#'Robin Hood', 'Superman', 'Maximus',
-#'Legolas', 'Batman', 'Wolverine',
-#'Forest Gump', 'Iron Man', 'Jack Sparrow',
-#'Indiana Jones', 'Tyler Durden', 'Captain America',
-#'Luke Skywalker'
-# ]
-
+atempts = 5
 #names of heroe's == 5
-heroes = ['rocky', 'james',
-'robin','tyler'
-]
-
-title = random.choice(heroes)
+heroes = ['rocky', 'james','robin','tyler', 'micky', 'jimmy']
+secret_word = random.choice(heroes)
 clue = list('?????')
 square_symbol = u'\u2B1C'
-
 guessed_word_correctly = False
 
-def update_clue(guessed_letter, title, clue):
+def update_clue(guessed_letter, secret_word, clue):
     index = 0
-    while index<len(title):
-        if guessed_letter == title[index]:
+    while index < len(secret_word):
+        if guessed_letter == secret_word[index]:
             clue[index] = guessed_letter
         index += 1
 
@@ -32,18 +19,18 @@ while atempts > 0:
     print(clue)
     print('Attempts left:' + square_symbol * atempts)
     guess=input('Guess letter or whole word: ')
+    print('Attempts left: ' + square_symbol * atempts)
+    guess = input('Guess letter or whole word: ')
 
-    if guess == title:
+    if guess == secret_word:
         guessed_word_correctly = True
         break
 
-    if guess in title:
-        update_clue(guess, title, clue)
     else:
         print('Incorrect. You lose an atempt')
-        atempts -= 1
+        atempts = atempts - 1
 
 if guessed_word_correctly:
-    print('You are right! The heroes was ' + title)
+    print('You are right! The heroes was ' + secret_word)
 else:
-    print('You are wrong! The heroes was ' + title)
+    print('You are wrong! The heroes was ' + secret_word)
