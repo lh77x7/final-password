@@ -17,8 +17,6 @@ def update_clue(guessed_letter, secret_word, clue):
 
 while atempts > 0:
     print(clue)
-    print('Attempts left:' + square_symbol * atempts)
-    guess=input('Guess letter or whole word: ')
     print('Attempts left: ' + square_symbol * atempts)
     guess = input('Guess letter or whole word: ')
 
@@ -26,6 +24,8 @@ while atempts > 0:
         guessed_word_correctly = True
         break
 
+    if guess in secret_word:
+        update_clue(guess, secret_word, clue)
     else:
         print('Incorrect. You lose an atempt')
         atempts = atempts - 1
